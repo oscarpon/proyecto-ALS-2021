@@ -1,0 +1,19 @@
+{% extends "skeleton.html" %}
+{% block content %}
+<div>
+    <div>
+        <a href="/clients/add">
+            Añadir cliente
+        </a>
+    </div>
+    <div>
+        {% for client in clients %}
+            <a href="/clients/modify?client_id={{client.key.urlsafe()}}">Editar</a>
+            <a href="/clients/delete?client_id={{client.key.urlsafe()}}">Eliminar</a>
+            {% include "client_description.html" %}
+        {% else %}
+            No hay clientes
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

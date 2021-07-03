@@ -1,0 +1,30 @@
+{% extends "skeleton.html" %}
+{% block content %}
+<form id="formClient">
+  <div class="form-row">
+    <div class="col-7">
+      <input type="text" class="form-control" placeholder="name" value="{{client.name}}">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="surname" value="{{client.surname}}">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="email" value="{{client.email}}">
+    </div>
+  </div>
+    <div class="form-row">
+    <div class="col-7">
+      <input type="text" class="form-control" placeholder="phone" value="{{client.phone}}">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="dni" value="{{client.dni}}">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="user" value="{{client.user}}">
+    </div>
+  </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-2" onsubmit="javascript: document.formClient.submit()">Enviar</button>
+    </div>
+</form>
+{% endblock %}
