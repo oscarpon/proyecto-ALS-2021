@@ -21,7 +21,7 @@
 
   }
 </script>
-<form id="formMotorcycle" action="/motorcycle/add" method="post" onsubmit="check_motorcycle_data()">
+<form id="formClient" action="/motorcycle/add" method="post" onsubmit="check_motorcycle_data()">
   <div class="form-row">
     <div class="col-7">
       <input type="text" class="form-control" placeholder="registration" value="{{motorcycle.registration}}">
@@ -42,7 +42,7 @@
     </div>
   </div>
     <div class="col-auto">
-      <button type="submit" class="btn btn-primary mb-2" onsubmit="document.formMotorcycle.submit()">Enviar</button>
+      <button type="submit" class="btn btn-primary mb-2" onsubmit="javascript: document.formClient.submit()">Enviar</button>
     </div>
 </form>
 

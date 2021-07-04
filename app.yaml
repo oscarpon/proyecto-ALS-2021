@@ -27,12 +27,36 @@ handlers:
   script: src.handlers.client.add.app
   login: required
 
+- url: /motorcycle/add
+  script: src.handlers.motorcycle.add.app
+  login: required
+
+- url: /repair/add
+  script: src.handlers.repair.add.app
+  login: required
+
 - url: /clients/modify
   script: src.handlers.client.modify.app
   login: required
 
+- url: /motorcycle/modify
+  script: src.handlers.motorcycle.modify.app
+  login: required
+
+- url: /repair/modify
+  script: src.handlers.repair.modify.app
+  login: required
+
 - url: /clients/delete
   script: src.handlers.client.delete.app
+  login: required
+
+- url: /motorcycle/delete
+  script: src.handlers.motorcycle.delete.app
+  login: required
+
+- url: /repair/delete
+  script: src.handlers.repair.delete.app
   login: required
 
 - url: /

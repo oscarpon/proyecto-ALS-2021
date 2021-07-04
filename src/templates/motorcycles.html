@@ -1,0 +1,19 @@
+{% extends "skeleton.html" %}
+{% block content %}
+<div>
+    <div>
+        <a href="/motorcycle/add">
+            Añadir motocicleta
+        </a>
+    </div>
+    <div>
+        {% for motorcycle in motorcycles %}
+            <a href="/motorcycle/modify?motorcycle_id={{motorcycle.key.urlsafe()}}">Editar</a>
+            <a href="/motorcycle/delete?motorcycle_id={{motorcycle.key.urlsafe()}}">Eliminar</a>
+            {% include "motorcycle_description.html" %}
+        {% else %}
+            No hay motos
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
