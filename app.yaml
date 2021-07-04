@@ -9,6 +9,35 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
+- url: /templates
+  static_dir: templates
+  application_readable: true
+
+- url: /res
+  static_dir: res
+
+- url: /error
+  script: src.handlers.error.app
+
+- url: /manage_client
+  script: src.handlers.manage_client.app
+  login: required
+
+- url: /clients/add
+  script: src.handlers.client.add.app
+  login: required
+
+- url: /clients/modify
+  script: src.handlers.client.modify.app
+  login: required
+
+- url: /clients/delete
+  script: src.handlers.client.delete.app
+  login: required
+
+- url: /
+  script: src.handlers.welcome.app
+
 - url: .*
   script: main.app
 
