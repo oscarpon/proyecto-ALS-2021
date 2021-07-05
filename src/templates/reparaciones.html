@@ -1,0 +1,19 @@
+{% extends "skeleton.html" %}
+{% block content %}
+<div>
+    <div>
+        <a href="/repair/add">
+            Añadir reparación
+        </a>
+    </div>
+    <div>
+        {% for repair in repairs %}
+            <a href="/repair/modify?motorcycle_id={{motorcycle.key.urlsafe()}}&?repair_id={{repair.key.urlsafe()}}">Editar</a>
+            <a href="/repair/delete?motorcycle_id={{motorcycle.key.urlsafe()}}&?repair_id={{repair.key.urlsafe()}}">Eliminar</a>
+            {% include "repair_description.html" %}
+        {% else %}
+            No hay reparaciones
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -7,6 +7,7 @@ from src.model.appinfo import AppInfo
 from src.model import remove
 from src.model.repair import Repair
 
+
 class DeleteRepair(webapp2.RequestHandler):
     def get(self):
         try:
@@ -38,7 +39,7 @@ class DeleteRepair(webapp2.RequestHandler):
             }
 
             jinja = jinja2.get_jinja2(app=self.app)
-            self.response.write(jinja.render_template("delete_motorcycle.html", **template_values));
+            self.response.write(jinja.render_template("delete_repair.html", **template_values));
         else:
             self.redirect("/")
 
@@ -58,12 +59,13 @@ class DeleteRepair(webapp2.RequestHandler):
                 self.redirect("/error?msg=Key not found")
                 return
 
-            self.redirect("/info?msg=Motorcycle deleted")
+            self.redirect("/info?msg=Repair deleted")
 
             remove.remove_repair(repair.key)
 
         else:
             self.redirect("/")
+
 
 app = webapp2.WSGIApplication([
     ("/repair/delete", DeleteRepair),

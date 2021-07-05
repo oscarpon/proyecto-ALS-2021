@@ -1,0 +1,17 @@
+{% extends "skeleton.html" %}
+{% block content %}
+<div class="container">
+     <div>
+        <p>Eliminar reparación</p>
+    </div>
+    <form id="frmRepairDelete" action="/repair/delete?motorcycle_id={{motorcycle.key.urlsafe()}}&?repair_id={{repair.key.urlsafe()}}" method="post">
+        <p>
+            {% include "repair_description.html" %}
+        </p>
+        <div class="col-auto">
+            <button class=" btn btn-danger" type="submit" onsubmit="document.frmRepairDelete.submit()">Eliminar</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

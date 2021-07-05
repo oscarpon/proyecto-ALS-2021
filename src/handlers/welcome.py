@@ -1,5 +1,5 @@
 import webapp2
-import os
+
 from webapp2_extras import jinja2
 from google.appengine.api import users
 

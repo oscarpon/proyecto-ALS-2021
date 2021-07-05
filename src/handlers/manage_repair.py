@@ -25,7 +25,7 @@ class RepairManager(webapp2.RequestHandler):
                 return
 
             motorcycle = ndb.Key(urlsafe=id).get()
-            repair = Repair.query(Repair.motorcycle == motorcycle.key.id()).order(Repair.piece)
+            repairs = Repair.query(Repair.motorcycle == motorcycle.key.id()).order(Repair.piece)
             access_link = users.create_logout_url("/")
 
             template_values = {
@@ -33,7 +33,7 @@ class RepairManager(webapp2.RequestHandler):
                 "user_name": user_name,
                 "access_link": access_link,
                 "motorcycle": motorcycle,
-                "repair": repair
+                "repairs": repairs
             }
 
             jinja = jinja2.get_jinja2(app=self.app)

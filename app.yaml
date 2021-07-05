@@ -10,7 +10,7 @@ handlers:
   upload: favicon\.ico
 
 - url: /templates
-  static_dir: templates
+  static_dir: /src/templates
   application_readable: true
 
 - url: /res
@@ -30,6 +30,9 @@ handlers:
 - url: /motorcycle/add
   script: src.handlers.motorcycle.add.app
   login: required
+
+- url: /info
+  script: src.handlers.info.app
 
 - url: /repair/add
   script: src.handlers.repair.add.app
