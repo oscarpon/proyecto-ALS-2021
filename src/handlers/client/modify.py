@@ -34,7 +34,7 @@ class ModifyClient(webapp2.RequestHandler):
             }
 
             jinja = jinja2.get_jinja2(app=self.app)
-            self.response.write(jinja.render_template("client_modify.html", **template_values))
+            self.response.write(jinja.render_template("modify_client.html", **template_values))
 
         else:
             self.redirect("/")

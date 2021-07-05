@@ -59,6 +59,14 @@ handlers:
   script: src.handlers.repair.delete.app
   login: required
 
+- url: /manage_motorcycles
+  script: src.handlers.manage_motorcycle.app
+  login: required
+
+- url: /manage_repair
+  script: src.handlers.manage_repair.app
+  login: required
+
 - url: /
   script: src.handlers.welcome.app
 
