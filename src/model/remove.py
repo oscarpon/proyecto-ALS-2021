@@ -18,6 +18,7 @@ def remove_motorcycle(motor_key):
     """
     motor_key.delete()
 
+
 @ndb.transactional(propagation=ndb.TrasactionOptions.INDEPENDENT)
 def remove_repair(rep_key):
     """

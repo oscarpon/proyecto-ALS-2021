@@ -4,8 +4,12 @@ from google.appengine.api import users
 import src.model.client
 from src.model.client import Client
 
+
 class AddClient(webapp2.RequestHandler):
+
+
    def get(self):
+
       user = users.get_current_user();
 
       if user:
