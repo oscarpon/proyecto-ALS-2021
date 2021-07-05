@@ -1,0 +1,61 @@
+{% extends "skeleton.html" %}
+{% block content %}
+<script type="text/javascript">
+    const edClientName = document.getElementById("clientName");
+    const edClientSurname = document.getElementById("clientSurname");
+    const edClientEmail = document.getElementById("clientEmail");
+    const edPhone = document.getElementById("clientPhone");
+
+    dvError.innerHTML="";
+    dvError.style.display = "none";
+
+    function check(){
+        if(edClientName.value.trim().length == 0 || edClientSurname.value.trim().length == 0 || edClientEmail.value.trim().length == 0 || edPhone.value.trim().length < 9){
+            toret = false;
+              dvError.innerHTML = "Error en los valores introducidos";
+              dvError.style.display = "block";
+        }
+
+        return toret;
+
+    }
+</script>
+<div class="container">
+    <div class="card-title">
+        <p>Modificar cliente</p>
+    </div>
+    <form id="frmModifyClient" action="/client/modify?client_id={{client.key.urlsafe()}}" method="post" onsubmit="check()">
+  <div class="form-row">
+    <div class="col-7">
+      <input id="clientName" type="text" class="form-control" placeholder="name" value="{{client.name}}">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="surname" value="{{client.surname}}">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="email" value="{{client.email}}">
+    </div>
+  </div>
+    <div class="form-row">
+    <div class="col-7">
+      <input type="text" class="form-control" placeholder="phone" value="{{client.phone}}">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="dni" value="{{client.dni}}">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="user" value="{{client.user}}">
+    </div>
+  </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-2" onsubmit="javascript: document.frmModifyClient.submit()">Modificar</button>
+    </div>
+</form>
+</div>
+
+<div id="dvError">
+
+</div>
+
+
+{% endblock %}
