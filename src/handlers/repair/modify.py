@@ -35,7 +35,7 @@ class ModifyRepair(webapp2.RequestHandler):
             }
 
             jinja = jinja2.get_jinja2(app=self.app)
-            self.response.write(jinja.render_template("repair_modify.html", **template_values))
+            self.response.write(jinja.render_template("modify_repair.html", **template_values))
 
         else:
             self.redirect("/")
@@ -69,6 +69,7 @@ class ModifyRepair(webapp2.RequestHandler):
             self.redirect("/index")
         else:
             self.redirect("/")
+
 
 app = webapp2.WSGIApplication([
     ("/repair/modify", ModifyRepair),

@@ -1,0 +1,67 @@
+{% extends "skeleton.html" %}
+{% block content %}
+    <script type="text/javascript">
+
+        const edPiece = document.getElementById("piece");
+        const edPrice = document.getElementById("price");
+        const edComment = document.getElementById("comments");
+
+        function hideError(){
+            document.getElementById("dvError").style.display = "none";
+        }
+
+        function showError(msg){
+            var dvError = document.getElementById("dvError");
+            var pError = document.createElement("p");
+
+            dvError.innerHTML = "";
+            dvError.appendChild(pError);
+            pError.appendChild(document.createTextNode(msg));
+            dvError.style.display = "block";
+
+        }
+
+        function check(){
+            var toret = true;
+
+            if(edPiece.value.trim().length == 0){
+                showError("La pieza es obligatoria");
+                toret = false;
+            }
+
+            if(edPrice.value.trim().length == 0){
+                showError("El precio es obligatorio");
+                toret = false;
+            }
+
+            return toret;
+
+        }
+    </script>
+<div class="container">
+    <div class="h2">
+        <p>Modificar moto</p>
+    </div>
+    <form id="formModifyRepair" action="/repair/modify?motorcycle_id={{motorcycle.key.urlsafe()}}&?repair_id={{repair.key.urlsafe()}}" method="post" onsubmit="check()">
+  <div class="form-row">
+    <div class="col-7">
+      <input type="text" class="form-control" placeholder="registration" value="{{repair.piece}}">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="user" value="{{repair.price}}">
+    </div>
+    <div class="col">
+      <input id="brand" type="text" class="form-control" placeholder="brand" value="{{repair.comments}}">
+    </div>
+  </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-success mb-2" onsubmit="javascript: document.formModifyRepair.submit()">Modificar</button>
+    </div>
+</form>
+</div>
+
+<div id="dvError">
+
+</div>
+
+{% endblock %}
