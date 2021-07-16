@@ -28,7 +28,7 @@ class AddMotorcycle(webapp2.RequestHandler):
             motorcycle.brand = "Yamaha"
             motorcycle.registration = "5652LJB"
             motorcycle.comments = "Sin comentarios"
-            key = motorcycle.update(motorcycle)
+            key = src.model.motorcycle.update(motorcycle)
             self.redirect("/motorcycles/modify?client_id=" + client.key.urlsafe() + "&motorcycle_id" + key.urlsafe())
 
         else:

@@ -10,11 +10,11 @@ from src.model.motorcycle import Motorcycle
 class DeleteMotorcycle(webapp2.RequestHandler):
     def get(self):
         try:
-            id = self.request.GET['motorcycle_id']
+            id_motorcycle = self.request.GET['motorcycle_id']
         except:
-            id = None
+            id_motorcycle = None
 
-        if not id:
+        if not id_motorcycle:
             self.redirect("/error?msg=Not found for delete")
             return
 
@@ -25,7 +25,7 @@ class DeleteMotorcycle(webapp2.RequestHandler):
             access_link = users.create_logout_url("/")
 
             try:
-                motorcycle = ndb.Key(urlsafe=id).get()
+                motorcycle = ndb.Key(urlsafe=id_motorcycle).get()
             except:
                 self.redirect("/error?msg=Key not found")
                 return
@@ -44,16 +44,16 @@ class DeleteMotorcycle(webapp2.RequestHandler):
 
     def post(self):
         try:
-            id = self.request.GET['motorcycle_id']
+            id_motorcycle = self.request.GET['motorcycle_id']
         except:
             self.redirect("/error?msg=Key not found")
             return
 
         user = users.get_current_user()
 
-        if user and id:
+        if user and id_motorcycle:
             try:
-                motorcycle = ndb.Key(urlsafe=id).get()
+                motorcycle = ndb.Key(urlsafe=id_motorcycle).get()
             except:
                 self.redirect("/error?msg=Key not found")
                 return
@@ -64,6 +64,7 @@ class DeleteMotorcycle(webapp2.RequestHandler):
 
         else:
             self.redirect("/")
+
 
 app = webapp2.WSGIApplication([
     ("/motorcycle/delete", DeleteMotorcycle),

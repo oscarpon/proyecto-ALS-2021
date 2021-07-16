@@ -2,12 +2,12 @@ from google.appengine.ext import ndb
 
 
 class Motorcycle(ndb.Model):
+    client = ndb.IntegerProperty(required=True, indexed=True)
     added = ndb.DateProperty(auto_now_add=True, indexed=True)
     registration = ndb.StringProperty(required=True, indexed=True)
-    user = ndb.StringProperty(required=True, indexed=True)
     brand = ndb.StringProperty(required=True, indexed=True)
     model = ndb.StringProperty(required=True, indexed=True)
-    comments = ndb.StringProperty()
+    comments = ndb.TextProperty()
 
 
 @ndb.transactional

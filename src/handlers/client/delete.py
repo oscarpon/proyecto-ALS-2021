@@ -3,7 +3,8 @@ from google.appengine.ext import ndb
 from google.appengine.api import users
 from webapp2_extras import jinja2
 
-from src.model import remove
+import src.model.remove
+
 from src.model.appinfo import AppInfo
 from src.model.client import Client
 
@@ -61,7 +62,7 @@ class DeleteClient(webapp2.RequestHandler):
 
             self.redirect("/info?msg=Client deleted")
 
-            remove.remove_client(client.key)
+            src.model.remove.remove_client(client)
 
         else:
             self.redirect("/")

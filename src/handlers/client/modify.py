@@ -42,6 +42,7 @@ class ModifyClient(webapp2.RequestHandler):
     def post(self):
         try:
             id = self.request.GET['client_id']
+
         except:
             id = None
 
@@ -51,10 +52,9 @@ class ModifyClient(webapp2.RequestHandler):
 
         user = users.get_current_user()
 
-
         if user:
             try:
-                client = ndb.Key(urlsafe=id).get()
+                client = ndb.Key(urlsafe = id).get()
             except:
                 self.redirect("/error?msg=Key don't exist")
                 return
@@ -65,10 +65,16 @@ class ModifyClient(webapp2.RequestHandler):
             client.phone = self.request.get("phone", "").strip()
             client.email = self.request.get("email", "").strip()
 
-            client.update()
+    
+            if len(client.name) < 1 or len(client.dni) < 1:
+                self.redirect("/error?msg=Aborted modification: missing")
+                return
+            #save
+            client.Client.update()
             self.redirect("/index")
         else:
             self.redirect("/")
+
 
 app = webapp2.WSGIApplication([
     ("/clients/modify", ModifyClient),

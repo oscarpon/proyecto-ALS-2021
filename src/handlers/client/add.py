@@ -20,7 +20,7 @@ class AddClient(webapp2.RequestHandler):
          client.dni = "35324426W"
          client.phone = "615232063"
          client.surname = "Apellidos"
-         key = client.update(client)
+         key = src.model.client.update(client)
          self.redirect("/clients/modify?client_id=" + key.urlsafe())
       else:
          self.redirect("/")

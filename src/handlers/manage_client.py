@@ -12,7 +12,7 @@ class ClientManager(webapp2.RequestHandler):
 
         if user:
             user_name = user.nickname()
-            clients = Client.query(Client.user == user.user_id()).order(-Client.added)
+            clients = Client.query(Client.user == user.user_id())
             access_link = users.create_logout_url("/")
 
             template_values = {

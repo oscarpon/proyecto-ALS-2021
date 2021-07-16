@@ -43,9 +43,9 @@ class ModifyMotorcycle(webapp2.RequestHandler):
 
     def post(self):
         try:
-            id = self.request.GET['motorcycle_id']
+            motorcycle_id = self.request.GET['motorcycle_id']
         except:
-            id = None
+            motorcycle_id = None
 
         if not id:
             self.redirect("/error?msg=Key don't exist")
@@ -53,10 +53,9 @@ class ModifyMotorcycle(webapp2.RequestHandler):
 
         user = users.get_current_user()
 
-
         if user:
             try:
-                motorcycle = ndb.Key(urlsafe=id).get()
+                motorcycle = ndb.Key(urlsafe=motorcycle_id).get()
             except:
                 self.redirect("/error?msg=Key don't exist")
                 return
@@ -67,10 +66,11 @@ class ModifyMotorcycle(webapp2.RequestHandler):
             motorcycle.registration = self.request.get("registration", "").strip()
             motorcycle.comments = self.request.get("comments", "").strip()
 
-            motorcycle.update()
+            motorcycle.Motorcycle.update()
             self.redirect("/index")
         else:
             self.redirect("/")
+
 
 app = webapp2.WSGIApplication([
     ("/motorcycles/modify", ModifyMotorcycle),

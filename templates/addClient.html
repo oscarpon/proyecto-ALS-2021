@@ -24,7 +24,7 @@
 
     if(!edClientEmail.value.contains("@")){
       toret = false;
-      dvError.innerHTML = "Intruduzca un formato de email válido";
+      dvError.innerHTML = "Introduzca un formato de email válido";
       dvError.style.display = "block";
     }
 
@@ -42,10 +42,10 @@
 <form id="formClient" action="/client/add" method="post" onsubmit="check_client_data()">
   <div class="form-row">
     <div class="col-7">
-      <input id="clientName" type="text" class="form-control" placeholder="name" value="{{client.name}}">
+      <input id="clientName" type="text" class="form-control" placeholder="name" value="{{client.Client.name}}">
     </div>
     <div class="col">
-      <input type="text" class="form-control" placeholder="surname" value="{{client.surname}}">
+      <input type="text" class="form-control" placeholder="surname" value="{{client.Client.surname}}">
     </div>
     <div class="col">
       <input type="text" class="form-control" placeholder="email" value="{{client.email}}">

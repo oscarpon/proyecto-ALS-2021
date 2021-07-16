@@ -5,10 +5,11 @@ from google.appengine.api import users
 import src.model.motorcycle
 from src.model.motorcycle import Motorcycle
 
+
 class AddMotorcycle(webapp2.RequestHandler):
     def get(self):
         try:
-            id = self.request.GET['client_id']
+            client_id = self.request.GET['client_id']
         except:
             self.redirect("/error?msg=missing client_id")
             return
@@ -17,7 +18,7 @@ class AddMotorcycle(webapp2.RequestHandler):
 
         if user:
             try:
-                client = ndb.Key(urlsafe=id).get()
+                client = ndb.Key(urlsafe=client_id).get()
             except:
                 self.redirect("/error?msg=Error")
                 return
@@ -28,13 +29,14 @@ class AddMotorcycle(webapp2.RequestHandler):
             motorcycle.brand = "Yamaha"
             motorcycle.registration = "5652LJB"
             motorcycle.comments = "Sin comentarios"
-            key = motorcycle.update(motorcycle)
+            key = src.model.motorcycle.update(motorcycle)
             self.redirect("/motorcycles/modify?client_id=" + client.key.urlsafe() + "&motorcycle_id" + key.urlsafe())
 
         else:
             self.redirect("/")
 
         return
+
 
 app = webapp2.WSGIApplication([
     ("/motorcycle/add", AddMotorcycle),
