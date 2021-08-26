@@ -1,6 +1,6 @@
 from google.appengine.ext import ndb
 
-from src.model.client import Client
+from src.model.user import Client
 from src.model.motorcycle import Motorcycle
 from src.model.repair import Repair
 

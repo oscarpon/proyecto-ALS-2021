@@ -1,8 +1,10 @@
 from google.appengine.ext import ndb
 
+from src.model.client import Client
+
 
 class Motorcycle(ndb.Model):
-    client = ndb.IntegerProperty(required=True, indexed=True)
+    client_key = ndb.KeyProperty(kind=Client)
     added = ndb.DateProperty(auto_now_add=True, indexed=True)
     registration = ndb.StringProperty(required=True, indexed=True)
     brand = ndb.StringProperty(required=True, indexed=True)
@@ -10,11 +12,4 @@ class Motorcycle(ndb.Model):
     comments = ndb.TextProperty()
 
 
-@ndb.transactional
-def update(motorcycle):
-    """
-    Update a motorcycle.
-    :param motorcycle: The motorcycle to motorcycle.
-    :return: Motorcycle key.
-    """
-    return motorcycle.put()
+

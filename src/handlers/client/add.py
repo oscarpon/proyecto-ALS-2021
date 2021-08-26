@@ -1,12 +1,10 @@
 import webapp2
 from google.appengine.api import users
 
-import src.model.client
+import src.model.user
 from src.model.client import Client
 
-
 class AddClient(webapp2.RequestHandler):
-
 
    def get(self):
 
@@ -20,7 +18,7 @@ class AddClient(webapp2.RequestHandler):
          client.dni = "35324426W"
          client.phone = "615232063"
          client.surname = "Apellidos"
-         key = src.model.client.update(client)
+         key = src.model.user.update(client)
          self.redirect("/clients/modify?client_id=" + key.urlsafe())
       else:
          self.redirect("/")
