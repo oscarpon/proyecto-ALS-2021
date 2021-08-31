@@ -3,6 +3,7 @@ from webapp2_extras import jinja2
 
 from src.model.appinfo import AppInfo
 
+
 class ErrorHandler(webapp2.RequestHandler):
     def get(self):
         try:
@@ -20,6 +21,7 @@ class ErrorHandler(webapp2.RequestHandler):
 
         jinja = jinja2.get_jinja2(app=self.app)
         self.response.write(jinja.render_template("error.html", **template_values));
+
 
 app = webapp2.WSGIApplication([
     ("/error", ErrorHandler),

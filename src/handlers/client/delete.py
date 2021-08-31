@@ -12,12 +12,12 @@ from src.model.client import Client
 class DeleteClient(webapp2.RequestHandler):
     def get(self):
         try:
-            id = self.request.GET['client_id']
+            id_client = self.request.GET['client_id']
         except:
-            id = None
+            print("Client not found")
 
-        if not id:
-            self.redirect("/error?msg=Not found for delete")
+        if not id_client:
+            self.redirect("/error?msg=Not found for first")
             return
 
         user = users.get_current_user()
@@ -27,7 +27,7 @@ class DeleteClient(webapp2.RequestHandler):
             access_link = users.create_logout_url("/")
 
             try:
-                client = ndb.Key(urlsafe=id).get()
+                client = ndb.Key(urlsafe=id_client).get()
             except:
                 self.redirect("/error?msg=Key not found")
                 return
@@ -46,26 +46,27 @@ class DeleteClient(webapp2.RequestHandler):
 
     def post(self):
         try:
-            id = self.request.GET['client_id']
+            id_client = self.request.GET['client_id']
         except:
             self.redirect("/error?msg=Key not found")
             return
 
         user = users.get_current_user()
 
-        if user and id:
+        if user and id_client:
             try:
-                client = ndb.Key(urlsafe=id).get()
+                client = ndb.Key(urlsafe=id_client).get()
             except:
                 self.redirect("/error?msg=Key not found")
                 return
 
             self.redirect("/info?msg=Client deleted")
 
-            src.model.remove.remove_client(client)
+            src.model.remove.remove_client(client.key)
 
         else:
             self.redirect("/")
+
 
 app = webapp2.WSGIApplication([
     ("/clients/delete", DeleteClient),

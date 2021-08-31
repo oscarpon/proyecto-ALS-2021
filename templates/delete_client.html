@@ -4,7 +4,7 @@
 <div>
     <p>Delete client</p>
 </div>
-<form id="formDeleteClient" action="/client/delete?client_id={{client.key.urlsafe()}}" method="post">
+<form id="formDeleteClient" action="/clients/delete?client_id={{client.key.urlsafe()}}" method="post">
     <p>
         {% include "client_description.html" %}
     </p>

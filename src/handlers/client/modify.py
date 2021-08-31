@@ -77,5 +77,5 @@ class ModifyClient(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ("/clients/modify", ModifyClient),
+    ("/client/modify", ModifyClient),
 ], debug=True)
