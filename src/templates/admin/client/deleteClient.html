@@ -1,6 +1,9 @@
 {% extends "admin/cabecera.html" %}
 {% block content %}
 <div class="container">
+    <div class="alert alert-danger" role="alert">
+        Tenga en cuenta que al eliminar un cliente eliminara tambien todos sus vehiculos
+    </div>
     <form id="formNewClient" action="/admin/deleteClient" method="post">
         <h1>Eliminar cliente</h1>
         <div class="form-group">

@@ -1,3 +1,5 @@
+{% extends "admin/cabecera.html" %}
+{% block content %}
 <div class="container">
     <table class="table mt-5">
         <h2>Datos de la motocicleta:</h2>
@@ -23,7 +25,5 @@
             </tr>
         </tbody>
     </table>
-    {% endif %}
-    <a href="/admin/newMotorcycle?id_client={{client.key.urlsafe()}}" class="btn btn-success mb-4">Añadir Motocicleta</a>
 </div>
 {% endblock %}

@@ -3,6 +3,7 @@ from webapp2_extras import jinja2
 from google.appengine.api import users
 from google.appengine.ext import ndb
 from model.client import Client
+from model.motorcycle import Motorcycle
 
 
 class AdminDeleteClientHandler(webapp2.RequestHandler):
@@ -71,11 +72,13 @@ class AdminDeleteClientHandler(webapp2.RequestHandler):
                 else:
                     try:
                         client = ndb.Key(urlsafe=id_client).get()
+                        client_motorcycles = Motorcycle.query(Motorcycle.id_client == client.key)
 
                         volver = "/admin/showClients"
-                        msg = "El cliente ha sido eliminado correctamente"
+                        msg = "El cliente y sus vehiculos han sido eliminado correctamente"
                         client.key.delete()
-
+                        for motorcycle in client_motorcycles:
+                            motorcycle.key.delete()
                         template_values = {
                             "volver": volver,
                             "msg": msg

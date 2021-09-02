@@ -30,8 +30,7 @@ class AdminDetailClientHandler(webapp2.RequestHandler):
                             }
 
                             jinja = jinja2.get_jinja2(app=self.app)
-                            self.response.write(
-                                jinja.render_template("/admin/client/detailClient.html", **template_values))
+                            self.response.write(jinja.render_template("/admin/client/detailClient.html", **template_values))
                         else:
                             msg = "Error al acceder al client 1"
                             volver = "/admin/showClients"

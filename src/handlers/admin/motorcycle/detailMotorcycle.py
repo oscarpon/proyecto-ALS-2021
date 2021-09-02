@@ -2,6 +2,7 @@ import webapp2
 from webapp2_extras import jinja2
 from google.appengine.api import users
 from google.appengine.ext import ndb
+from model.motorcycle import Motorcycle
 
 
 class AdminDetailMotorcycleHandler(webapp2.RequestHandler):
@@ -40,7 +41,7 @@ class AdminDetailMotorcycleHandler(webapp2.RequestHandler):
                             jinja = jinja2.get_jinja2(app=self.app)
                             self.response.write(jinja.render_template("/mensajeGenerico.html", **template_values))
                     except:
-                        msg = "Error al acceder al client 2"
+                        msg = "Error al acceder a la motocicleta 2"
                         volver = "/admin/showMotorcycles"
 
                         template_values = {
@@ -51,7 +52,7 @@ class AdminDetailMotorcycleHandler(webapp2.RequestHandler):
                         jinja = jinja2.get_jinja2(app=self.app)
                         self.response.write(jinja.render_template("/mensajeGenerico.html", **template_values))
                 else:
-                    msg = "Error al acceder al client 3"
+                    msg = "Error al acceder a la motocicleta 3"
                     volver = "/admin/showMotorcycles"
 
                     template_values = {
