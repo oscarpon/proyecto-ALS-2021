@@ -1,0 +1,35 @@
+{% extends "usuario/cabecera.html" %}
+{% block content %}
+<div class="container">
+    {% if clients.count() > 0 %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Dni</th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+            <tr>
+                <td>{{client.dni}}</td>
+                <td>{{client.name}}</td>
+                <td>{{client.surname}}</td>
+                <td>{{client.phone}}</td>
+                <td>{{client.email}}</td>
+                <td>
+                    <a href="/detailClient?id_client={{client.key.urlsafe()}}"><button type="button" class="btn btn-primary">Ver</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h1>Actualmente no se encuentran clientes en el sistema</h1>
+    {% endif %}
+</div>
+{% endblock %}

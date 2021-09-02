@@ -2,36 +2,35 @@ import webapp2
 from webapp2_extras import jinja2
 from google.appengine.api import users
 from google.appengine.ext import ndb
-from model.client import Client
 
 
-class AdminEditClientHandler(webapp2.RequestHandler):
+class AdminEditMotorcycleHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
 
         if user:
             if users.is_current_user_admin():
                 try:
-                    id_client = self.request.GET["id_client"]
+                    id_motorcycle = self.request.GET["id_motorcycle"]
                 except:
-                    id_client = "Error"
-                if id_client != "Error":
+                    id_motorcycle = "Error"
+                if id_motorcycle != "Error":
                     try:
-                        client = ndb.Key(urlsafe=id_client).get()
+                        motorcycle = ndb.Key(urlsafe=id_motorcycle).get()
 
                         user_name = user.nickname()
                         logout = users.create_logout_url("/")
                         template_values = {
                             "user_name": user_name,
-                            "client": client,
+                            "motorcycle": motorcycle,
                             "logout": logout
                         }
 
                         jinja = jinja2.get_jinja2(app=self.app)
-                        self.response.write(jinja.render_template("/admin/client/editClient.html", **template_values))
+                        self.response.write(jinja.render_template("/admin/motorcycle/editMotorcycle.html", **template_values))
                     except:
                         msg = "Error inesperado 1"
-                        volver = "/admin/showClients"
+                        volver = "/admin/showMotorcycles"
 
                         template_values = {
                             "msg": msg,
@@ -43,7 +42,7 @@ class AdminEditClientHandler(webapp2.RequestHandler):
 
                 else:
                     msg = "Error inesperado 2"
-                    volver = "/admin/showClients"
+                    volver = "/admin/showMotorcycles"
 
                     template_values = {
                         "msg": msg,
@@ -63,24 +62,22 @@ class AdminEditClientHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if user:
             if users.is_current_user_admin():
-                id_client = self.request.get("edIdClient", "Error")
-                dni = self.request.get("edDni", "Error")
-                name = self.request.get("edName", "Error")
-                surname = self.request.get("edSurname", "Error")
-                phone = self.request.get("edPhone", "Error")
-                email = self.request.get("edEmail", "Error")
+                id_motorcycle = self.request.get("edIdMotorcycle", "Error")
+                registration = self.request.get("edRegistration", "Error")
+                brand  = self.request.get("edBrand", "Error")
+                model = self.request.get("edModel", "Error")
+                comments = self.request.get("edComments", "Error")
 
                 try:
-                    client = ndb.Key(urlsafe=id_client).get()
-                    client.dni = dni
-                    client.name = name
-                    client.surname = surname
-                    client.phone = phone
-                    client.email = email
-                    client.put()
+                    motorcycle = ndb.Key(urlsafe=id_motorcycle).get()
+                    motorcycle.registration = registration
+                    motorcycle.brand = brand
+                    motorcycle.model = model
+                    motorcycle.comments = comments
+                    motorcycle.put()
 
-                    volver = "/admin/showClients"
-                    msg = "El cliente ha sido editado correctamente"
+                    volver = "/admin/showMotorcycles"
+                    msg = "La moto ha sido editada correctamente"
 
                     template_values = {
                         "msg": msg,
@@ -92,7 +89,7 @@ class AdminEditClientHandler(webapp2.RequestHandler):
 
                 except:
                     msg = "Error inesperado 3"
-                    volver = "/admin/showClients"
+                    volver = "/admin/showMotorcycles"
 
                     template_values = {
                         "msg": msg,
@@ -111,5 +108,5 @@ class AdminEditClientHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/admin/editClient', AdminEditClientHandler),
+    ('/admin/editMotorcycle', AdminEditMotorcycleHandler),
 ], debug=True)

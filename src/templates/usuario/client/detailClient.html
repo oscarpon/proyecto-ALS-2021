@@ -1,0 +1,63 @@
+{% extends "usuario/cabecera.html" %}
+{% block content %}
+<div class="container">
+    <table class="table mt-5">
+        <h2>Datos del cliente:</h2>
+        <thead>
+        <tr>
+            <th scope="col">Dni</th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{client.dni}}</td>
+                <td>{{client.name}}</td>
+                <td>{{client.surname}}</td>
+                <td>{{client.phone}}</td>
+                <td>{{client.email}}</td>
+                <td>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    {% if motorcycles.count() > 0 %}
+    <table class="table mt-5">
+        <h2>Motos del cliente:</h2>
+        <thead>
+        <tr>
+            <th scope="col">Registration</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Model</th>
+            <th scope="col">Coments</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for motorcycle in motorcycles %}
+            <tr>
+                <td>{{motorcycle.registration}}</td>
+                <td>{{motorcycle.brand}}</td>
+                <td>{{motorcycle.model}}</td>
+                <td>{{motorcycle.comments}}</td>
+                <td>
+
+
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+     <div class="alert alert-info" role="alert">
+        Actualmente no se encuentras motos para este cliente
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

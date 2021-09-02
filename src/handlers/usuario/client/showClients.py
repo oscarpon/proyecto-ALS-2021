@@ -4,13 +4,13 @@ from google.appengine.api import users
 from model.client import Client
 
 
-class AdminShowClientsHandler(webapp2.RequestHandler):
+class ShowClientsHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
 
         clients = Client.query()
         if user:
-            if users.is_current_user_admin():
+            if not users.is_current_user_admin():
                 user_name = user.nickname()
                 logout = users.create_logout_url("/")
                 template_values = {
@@ -20,7 +20,7 @@ class AdminShowClientsHandler(webapp2.RequestHandler):
                 }
 
                 jinja = jinja2.get_jinja2(app=self.app)
-                self.response.write(jinja.render_template("/admin/client/showClients.html", **template_values))
+                self.response.write(jinja.render_template("/usuario/client/showClients.html", **template_values))
 
             else:
                 self.redirect("/")
@@ -31,5 +31,5 @@ class AdminShowClientsHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/admin/showClients', AdminShowClientsHandler),
+    ('/showClients', ShowClientsHandler),
 ], debug=True)

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="card mt-5">
+        <div class="card-header">
+            Inicio de sesión
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Aplicación de gestión de taller</h5>
+            <p class="card-text">Desde esta aplicación podrás controlar los clientes, las motos y las reparaciones.</p>
+            <a href="{{access_link}}" class="btn btn-success">Iniciar sesión</a>
+        </div>
+    </div>
+</div>
+</div>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

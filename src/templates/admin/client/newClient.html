@@ -1,0 +1,31 @@
+{% extends "admin/cabecera.html" %}
+{% block content %}
+<div class="container">
+    <form id="formNewClient" action="/admin/newClient" method="post">
+        <h1>Añadir cliente</h1>
+        <div class="form-group">
+            <label for="edDni">Dni:</label>
+            <input type="text" class="form-control" id="edDni" name="edDni">
+        </div><div class="form-group">
+            <label for="edName">Nombre:</label>
+            <input type="text" class="form-control" id="edName" name="edName">
+        </div>
+        <div class="form-group">
+            <label for="edSurname">Apellidos:</label>
+            <input type="text" class="form-control" id="edSurname" name="edSurname">
+        </div>
+        <div class="form-group">
+            <label for="edPhone">Teléfono:</label>
+            <input type="text" class="form-control" id="edPhone" name="edPhone">
+        </div>
+        <div class="form-group">
+            <label for="edEmail">Email:</label>
+            <input type="email" class="form-control" id="edEmail" name="edEmail">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="/admin/showClients">
+            <button class="btn btn-danger">Cancelar</button>
+        </a>
+    </form>
+</div>
+{% endblock %}

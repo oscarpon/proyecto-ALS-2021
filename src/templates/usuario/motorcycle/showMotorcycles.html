@@ -1,0 +1,41 @@
+{% extends "usuario/cabecera.html" %}
+{% block content %}
+<div class="container">
+    {% if motorcycles.count() > 0 %}
+    <table class="table mt-5">
+        <thead>
+        <tr>
+            <th scope="col">Registration</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Model</th>
+            <th scope="col">Comments</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for motorcycle in motorcycles %}
+        <tr>
+            <td>{{motorcycle.registration}}</td>
+            <td>{{motorcycle.brand}}</td>
+            <td>{{motorcycle.model}}</td>
+            <td>{{motorcycle.comments}}</td>
+            <td>
+                <a href="/admin/detailClient?id_motorcycle={{motorcycle.key.urlsafe()}}">
+                    <button type="button" class="btn btn-primary">Ver</button>
+                </a>
+
+            </td>
+        </tr>
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-info" role="alert">
+        Actualmente no se encuentran motos en el sistema
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

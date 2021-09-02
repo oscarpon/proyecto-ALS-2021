@@ -6,12 +6,12 @@ from model.client import Client
 from model.motorcycle import Motorcycle
 
 
-class AdminDetailClientHandler(webapp2.RequestHandler):
+class UserDetailClientHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
 
         if user:
-            if users.is_current_user_admin():
+            if not users.is_current_user_admin():
                 try:
                     id_client = self.request.GET["id_client"]
                 except:
@@ -32,10 +32,10 @@ class AdminDetailClientHandler(webapp2.RequestHandler):
 
                             jinja = jinja2.get_jinja2(app=self.app)
                             self.response.write(
-                                jinja.render_template("/admin/client/detailClient.html", **template_values))
+                                jinja.render_template("/usuario/client/detailClient.html", **template_values))
                         else:
                             msg = "Error al acceder al client 1"
-                            volver = "/admin/showClients"
+                            volver = "/usuario/showClients"
 
                             template_values = {
                                 "msg": msg,
@@ -46,7 +46,7 @@ class AdminDetailClientHandler(webapp2.RequestHandler):
                             self.response.write(jinja.render_template("/mensajeGenerico.html", **template_values))
                     except:
                         msg = "Error al acceder al client 2"
-                        volver = "/admin/showClients"
+                        volver = "/usuario/showClients"
 
                         template_values = {
                             "msg": msg,
@@ -57,7 +57,7 @@ class AdminDetailClientHandler(webapp2.RequestHandler):
                         self.response.write(jinja.render_template("/mensajeGenerico.html", **template_values))
                 else:
                     msg = "Error al acceder al client 3"
-                    volver = "/admin/showClients"
+                    volver = "/usuario/showClients"
 
                     template_values = {
                         "msg": msg,
@@ -75,5 +75,5 @@ class AdminDetailClientHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/admin/detailClient', AdminDetailClientHandler),
+    ('/detailClient', UserDetailClientHandler),
 ], debug=True)

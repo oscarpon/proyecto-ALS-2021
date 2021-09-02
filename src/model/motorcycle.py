@@ -1,7 +1,5 @@
 from google.appengine.ext import ndb
 
-from src.model.client import Client
-
 
 class Motorcycle(ndb.Model):
     id_client = ndb.KeyProperty(required=True)
@@ -9,6 +7,4 @@ class Motorcycle(ndb.Model):
     brand = ndb.StringProperty(required=True, indexed=True)
     model = ndb.StringProperty(required=True, indexed=True)
     comments = ndb.TextProperty()
-
-
 

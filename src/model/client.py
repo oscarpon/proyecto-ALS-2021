@@ -7,4 +7,3 @@ class Client(ndb.Model):
     surname = ndb.StringProperty(required=True, indexed=True)
     phone = ndb.StringProperty(required=True)
     email = ndb.StringProperty(required=True)
-

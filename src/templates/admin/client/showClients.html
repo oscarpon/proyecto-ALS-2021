@@ -1,0 +1,41 @@
+{% extends "admin/cabecera.html" %}
+{% block content %}
+<div class="container">
+    {% if clients.count() > 0 %}
+    <table class="table mt-5">
+        <thead>
+        <tr>
+            <th scope="col">Dni</th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+            <tr>
+                <td>{{client.dni}}</td>
+                <td>{{client.name}}</td>
+                <td>{{client.surname}}</td>
+                <td>{{client.phone}}</td>
+                <td>{{client.email}}</td>
+                <td>
+                    <a href="/admin/deleteClient?id_client={{client.key.urlsafe()}}"><button type="button" class="btn btn-danger">Delete</button></a>
+                    <a href="/admin/editClient?id_client={{client.key.urlsafe()}}"><button type="button" class="btn btn-warning">Edit</button></a>
+                    <a href="/admin/detailClient?id_client={{client.key.urlsafe()}}"><button type="button" class="btn btn-primary">Ver</button></a>
+
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-info" role="alert">
+        Actualmente no se encuentran clientes en el sistema
+    </div>
+    {% endif %}
+    <a href="/admin/newClient" class="btn btn-success mb-4">Añadir Cliente</a>
+</div>
+{% endblock %}

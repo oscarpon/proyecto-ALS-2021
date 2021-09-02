@@ -1,0 +1,67 @@
+application: proyectofinal
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+#Urls de bienvenida
+
+- url: /welcome
+  script: handlers.usuario.welcome.app
+
+- url: /admin/welcome
+  script: handlers.admin.welcome.app
+
+#Urls de clientes
+- url: /showClients
+  script: handlers.usuario.client.showClients.app
+
+- url: /admin/showClients
+  script: handlers.admin.client.showClients.app
+
+- url: /admin/newClient
+  script: handlers.admin.client.newClient.app
+
+- url: /admin/deleteClient
+  script: handlers.admin.client.deleteClient.app
+
+- url: /admin/editClient
+  script: handlers.admin.client.editClient.app
+
+- url: /admin/detailClient
+  script: handlers.admin.client.detailClient.app
+
+- url: /detailClient
+  script: handlers.usuario.client.detailClient.app
+
+#Urls de motos
+- url: /admin/newMotorcycle
+  script: handlers.admin.motorcycle.newMotorcycle.app
+
+- url: /admin/showMotorcycles
+  script: handlers.admin.motorcycle.showMotorcycles.app
+
+- url: /admin/deleteMotorcycle
+  script: handlers.admin.motorcycle.deleteMotorcycle.app
+
+- url: /showMotorcycles
+  script: handlers.usuario.motorcycle.showMotorcycles.app
+
+- url: /admin/editMotorcycle
+  script: handlers.admin.motorcycle.editMotorcycle.app
+
+#Url genérica
+
+- url: .*
+  script: handlers.main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+- name: jinja2
+  version: "latest"
