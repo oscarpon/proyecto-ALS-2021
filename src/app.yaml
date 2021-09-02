@@ -55,6 +55,9 @@ handlers:
 - url: /admin/editMotorcycle
   script: handlers.admin.motorcycle.editMotorcycle.app
 
+- url: /admin/detailMotorcycle
+  script: handlers.admin.motorcycle.detailMotorcycle.app
+
 #Url genérica
 
 - url: .*
