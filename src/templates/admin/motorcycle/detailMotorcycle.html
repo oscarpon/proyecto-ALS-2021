@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container">
     <table class="table mt-5">
-        <h2>Datos de la motocicleta:</h2>
+        <h2>Datos de la motocicleta {{motorcycle.registration}}:</h2>
         <thead>
         <tr>
             <th scope="col">Registration</th>
@@ -25,5 +25,41 @@
             </tr>
         </tbody>
     </table>
+
+    {% if repairs.count() > 0 %}
+    <table class="table mt-5">
+        <h2>Reparaciones:</h2>
+        <thead>
+        <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Pieza</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Coments</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for repair in repairs %}
+            <tr>
+                <td>{{repair.added}}</td>
+                <td>{{repair.piece}}</td>
+                <td>{{repair.price}}</td>
+                <td>{{repair.comments}}</td>
+                <td>
+                    <!--<a href="/admin/deleteMotorcycle?id_motorcycle={{motorcycle.key.urlsafe()}}"><button type="button" class="btn btn-danger">Delete</button></a>
+                    <a href="/admin/editMotorcycle?id_motorcycle={{motorcycle.key.urlsafe()}}"><button type="button" class="btn btn-warning">Edit</button></a>
+                    <a href="/admin/detailMotorcycle?id_motorcycle={{motorcycle.key.urlsafe()}}"><button type="button" class="btn btn-primary">Ver</button></a>-->
+
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+     <div class="alert alert-info" role="alert">
+        Actualmente no se encuentran reparaciones para esta moto
+    </div>
+    {% endif %}
+    <a href="/admin/newRepair?id_motorcycle={{motorcycle.key.urlsafe()}}" class="btn btn-success mb-4">Añadir Reparación</a>
 </div>
 {% endblock %}

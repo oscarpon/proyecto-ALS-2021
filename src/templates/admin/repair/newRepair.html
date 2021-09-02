@@ -1,0 +1,24 @@
+{% extends "admin/cabecera.html" %}
+{% block content %}
+<div class="container">
+    <form id="formNewRepair" action="/admin/newRepair" method="post">
+        <h1>Crear Reparación</h1>
+        <div class="form-group">
+            <label for="edPiece">Pieza:</label>
+            <input type="text" class="form-control" id="edPiece" name="edPiece">
+        </div><div class="form-group">
+            <label for="edPrice">Precio:</label>
+            <input type="text" class="form-control" id="edPrice" name="edPrice">
+        </div>
+        <div class="form-group">
+            <label for="edComments">Comment:</label>
+            <input type="text" class="form-control" id="edComments" name="edComments">
+        </div>
+        <input type="text" id="edIdClient" name="edIdMotorcycle" value="{{motorcycle.key.urlsafe()}}" hidden/>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="/admin/showMotorcycles">
+            <button class="btn btn-danger">Cancelar</button>
+        </a>
+    </form>
+</div>
+{% endblock %}

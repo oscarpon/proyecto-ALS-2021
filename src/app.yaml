@@ -58,6 +58,11 @@ handlers:
 - url: /admin/detailMotorcycle
   script: handlers.admin.motorcycle.detailMotorcycle.app
 
+# Reparaciones
+- url: /admin/newRepair
+  script: handlers.admin.repair.newRepair.app
+
+
 #Url genérica
 
 - url: .*
