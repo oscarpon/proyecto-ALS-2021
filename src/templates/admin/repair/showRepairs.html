@@ -1,0 +1,44 @@
+{% extends "admin/cabecera.html" %}
+{% block content %}
+<div class="container">
+    {% if repairs.count() > 0 %}
+    <table class="table mt-5">
+        <thead>
+        <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Pieza</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Comentario</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for repair in repairs %}
+        <tr>
+            <td>{{repair.added}}</td>
+            <td>{{repair.piece}}</td>
+            <td>{{repair.price}}</td>
+            <td>{{repair.comments}}</td>
+            <td>
+                <a href="/admin/deleteRepair?id_repair={{repair.key.urlsafe()}}">
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </a>
+                <a href="/admin/editRepair?id_repair={{repair.key.urlsafe()}}">
+                    <button type="button" class="btn btn-warning">Edit</button>
+                </a>
+
+            </td>
+        </tr>
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-info" role="alert">
+        Actualmente no se encuentran reparaciones en el sistema
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

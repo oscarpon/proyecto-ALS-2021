@@ -62,6 +62,12 @@ handlers:
 - url: /admin/newRepair
   script: handlers.admin.repair.newRepair.app
 
+- url: /admin/deleteRepair
+  script: handlers.admin.repair.deleteRepair.app
+
+- url: /admin/showRepairs
+  script: handlers.admin.repair.showRepairs.app
+
 
 #Url genérica
 

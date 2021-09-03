@@ -1,0 +1,31 @@
+{% extends "admin/cabecera.html" %}
+{% block content %}
+<div class="container">
+    <form id="formDeleteRepair" action="/admin/deleteRepair" method="post">
+        <h1>Eliminar reparacion</h1>
+        <div class="form-group">
+            <label for="edRegistration">Fecha:</label>
+            <input type="text" class="form-control" id="edRegistration" name="edRegistration" value="{{repair.added}}">
+        </div>
+        <div class="form-group">
+            <label for="edPiece">Pieza:</label>
+            <input type="text" class="form-control" id="edPiece" name="edPiece" value={{repair.piece}}>
+        </div>
+        <div class="form-group">
+            <label for="edPrice">Precio:</label>
+            <input type="text" class="form-control" id="edPrice" name="edPrice" value={{repair.price}}>
+        </div>
+        <div class="form-group">
+            <label for="edComments">Comentarios:</label>
+            <input type="text" class="form-control" id="edComments" name="edComments" value={{repair.comments}}>
+        </div>
+        <div class="form-group">
+            <input type="hidden" class="form-control" id="edIdRepair" name="edIdRepair" value={{repair.key.urlsafe()}}>
+        </div>
+        <button type="submit" class="btn btn-primary">Eliminar</button>
+        <a href="/admin/detailMotorcycle?id_motorcycle={{repair.id_motorcycle}}">
+            <button class="btn btn-danger">Cancelar</button>
+        </a>
+    </form>
+</div>
+{% endblock %}
