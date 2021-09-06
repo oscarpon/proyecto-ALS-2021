@@ -14,16 +14,16 @@
         </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>{{client.dni}}</td>
-                <td>{{client.name}}</td>
-                <td>{{client.surname}}</td>
-                <td>{{client.phone}}</td>
-                <td>{{client.email}}</td>
-                <td>
+        <tr>
+            <td>{{client.dni}}</td>
+            <td>{{client.name}}</td>
+            <td>{{client.surname}}</td>
+            <td>{{client.phone}}</td>
+            <td>{{client.email}}</td>
+            <td>
 
-                </td>
-            </tr>
+            </td>
+        </tr>
         </tbody>
     </table>
 
@@ -40,22 +40,23 @@
         </tr>
         </thead>
         <tbody>
-            {% for motorcycle in motorcycles %}
-            <tr>
-                <td>{{motorcycle.registration}}</td>
-                <td>{{motorcycle.brand}}</td>
-                <td>{{motorcycle.model}}</td>
-                <td>{{motorcycle.comments}}</td>
-                <td>
-
-
-                </td>
-            </tr>
-            {% endfor %}
+        {% for motorcycle in motorcycles %}
+        <tr>
+            <td>{{motorcycle.registration}}</td>
+            <td>{{motorcycle.brand}}</td>
+            <td>{{motorcycle.model}}</td>
+            <td>{{motorcycle.comments}}</td>
+            <td>
+                <a href="/admin/detailMotorcycle?id_motorcycle={{motorcycle.key.urlsafe()}}">
+                    <button type="button" class="btn btn-primary">Ver</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
         </tbody>
     </table>
     {% else %}
-     <div class="alert alert-info" role="alert">
+    <div class="alert alert-info" role="alert">
         Actualmente no se encuentras motos para este cliente
     </div>
     {% endif %}

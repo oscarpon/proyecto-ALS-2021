@@ -1,12 +1,40 @@
 {% extends "admin/cabecera.html" %}
 {% block content %}
+<script>
+    function hideError(){
+        document.getElementById("dvError").style.display = "none";
+    }
+    function showError(msg){
+        var dvAnswer = document.getElementById("dvError");
+        dvAnswer.innerHTML = "Error" + msg;
+        dvAnswer.style.display = "block";
+        dvAnswer.style.backgroundColor = "#FF1900";
+        dvAnswer.style.color = "white";
+        dvAnswer.style.fontSize = "14px";
+    }
+    function chk(){
+        var toret = true;
+        var form = document.getElementById("formNewClient");
+        hideError();
+        var nombre = form["edName"].value.trim().toLowerCase();
+
+        var alfabeticos = /^[a-z ]{4,25}$/;
+
+        if(nombre.length < 4 || nombre.length > 25 | alfabeticos.test(nombre.toLowerCase()){
+            toret = false;
+            showError("El nombre debe tener solo caracteres alfabeticos");
+        }
+        return toret;
+    }
+</script>
 <div class="container">
-    <form id="formNewClient" action="/admin/newClient" method="post">
+    <form id="formNewClient" action="/admin/newClient" method="post" onsubmit="return chk()">
         <h1>Añadir cliente</h1>
         <div class="form-group">
             <label for="edDni">Dni:</label>
             <input type="text" class="form-control" id="edDni" name="edDni">
-        </div><div class="form-group">
+        </div>
+        <div class="form-group">
             <label for="edName">Nombre:</label>
             <input type="text" class="form-control" id="edName" name="edName">
         </div>
@@ -27,5 +55,8 @@
             <button class="btn btn-danger">Cancelar</button>
         </a>
     </form>
+    <div id="dvError">
+
+    </div>
 </div>
 {% endblock %}
