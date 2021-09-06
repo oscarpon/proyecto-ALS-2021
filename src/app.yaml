@@ -9,8 +9,6 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
-#Urls de bienvenida
-
 - url: /welcome
   script: handlers.usuario.welcome.app
 
@@ -74,8 +72,8 @@ handlers:
 - url: /admin/editRepair
   script: handlers.admin.repair.editRepair.app
 
-
-#Url genérica
+- url: /showRepairs
+  script: handlers.usuario.repair.showRepair.app
 
 - url: .*
   script: handlers.main.app

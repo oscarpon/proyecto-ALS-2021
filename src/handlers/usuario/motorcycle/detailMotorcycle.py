@@ -31,11 +31,10 @@ class UserMotorcycleDetailHandler(webapp2.RequestHandler):
                             }
 
                             jinja = jinja2.get_jinja2(app=self.app)
-                            self.response.write(
-                                jinja.render_template("/usuario/client/detailMotorcycle.html", **template_values))
+                            self.response.write(jinja.render_template("/usuario/motorcycle/detailMotorcycle.html", **template_values))
                         else:
                             msg = "Error al acceder a la moto 1"
-                            volver = "/usuario/showMotorcycles"
+                            volver = "/showMotorcycles"
 
                             template_values = {
                                 "msg": msg,
@@ -46,7 +45,7 @@ class UserMotorcycleDetailHandler(webapp2.RequestHandler):
                             self.response.write(jinja.render_template("/mensajeGenerico.html", **template_values))
                     except:
                         msg = "Error al acceder a la moto 2"
-                        volver = "/usuario/showMotorcycles"
+                        volver = "/showMotorcycles"
 
                         template_values = {
                             "msg": msg,
@@ -57,7 +56,7 @@ class UserMotorcycleDetailHandler(webapp2.RequestHandler):
                         self.response.write(jinja.render_template("/mensajeGenerico.html", **template_values))
                 else:
                     msg = "Error al acceder a la moto 3"
-                    volver = "/usuario/showMotorcycles"
+                    volver = "/showMotorcycles"
 
                     template_values = {
                         "msg": msg,
