@@ -51,7 +51,7 @@
                     <a href="/admin/deleteMotorcycle?id_motorcycle={{motorcycle.key.urlsafe()}}"><button type="button" class="btn btn-danger">Delete</button></a>
                     <a href="/admin/editMotorcycle?id_motorcycle={{motorcycle.key.urlsafe()}}"><button type="button" class="btn btn-warning">Edit</button></a>
                     <a href="/admin/detailMotorcycle?id_motorcycle={{motorcycle.key.urlsafe()}}"><button type="button" class="btn btn-primary">Ver</button></a>
-
+                    <a href="/admin/newRepair?id_motorcycle={{motorcycle.key.urlsafe()}}" class="btn btn-success">Reparación</a>
                 </td>
             </tr>
             {% endfor %}

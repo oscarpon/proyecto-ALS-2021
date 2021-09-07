@@ -1,6 +1,14 @@
 {% extends "usuario/cabecera.html" %}
 {% block content %}
-<div id="Saludo bienvenida">
-  <p><h2 style="color: black">Bienvenid@, {{user_name}}</h2></p>
+<div class="container">
+  <div class="card">
+  <div class="card-header">
+    Bienvenid@, se ha logueado como usuario!!!
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Sistema de gestión de taller</h5>
+    <p class="card-text">Usuario: {{user_name}}</p>
+  </div>
+</div>
 </div>
 {% endblock %}

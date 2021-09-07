@@ -1,6 +1,15 @@
 {% extends "admin/cabecera.html" %}
 {% block content %}
-<div id="Saludo bienvenida">
-  <p><h2 style="color: black">Bienvenid@ administrador, {{user_name}}</h2></p>
+<div class="container">
+  <div class="card">
+  <div class="card-header">
+    Bienvenid@, se ha logueado como administrador!!!
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Sistema de gestión de taller</h5>
+    <p class="card-text">Usuario Admin: {{user_name}}</p>
+    <a href="/admin/showClients" class="btn btn-primary">Administrar clientes</a>
+  </div>
+</div>
 </div>
 {% endblock %}
