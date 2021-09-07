@@ -14,22 +14,25 @@
         var form = document.getElementById("formNewClient");
         hideError();
         var registration = form["edRegistration"].value.trim().toUpperCase();
-        var brand = form["edBrand"].value.trim.capitalize();
-        var model = form["edModel"].value.trim.capitalize();
+        var brand = form["edBrand"].value.trim().toUpperCase();
+        //var model = form["edModel"].value.trim().capitalize();
 
         var registration_expr = /^[0-9]{4,4}[A-Z]{3,3}$/;
-        var no_alfabeticos = /^[A-Za-z ]{4,25}$/;
+        var no_alfabeticos = /^[A-Z]{4,25}$/;
 
         if(!registration_expr.test(registration.toUpperCase())){
             toret = false;
             showError("La matrícula no tiene un formato válido 6666LPL");
-        }if(brand.length < 3 || !no_alfabeticos.test(brand.capitalize())){
+        }if(brand.length < 3){
             toret = false;
             showError("El nombre de la marca tiene que tener una longitud mayor a 3");
-        }if(model.length < 3){
+        }if(!no_alfabeticos.test(brand)){
+            toret = false;
+            showError("El nombre de la marca no puede contener caracteres numéricos");
+        }/*if(model.length < 3){
             toret = false;
             showError("El modelo tiene que tener ua longitud minima de 3");
-        }
+        }*/
         return toret;
     }
 </script>
