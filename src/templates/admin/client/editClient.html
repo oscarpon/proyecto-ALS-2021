@@ -1,11 +1,50 @@
 {% extends "admin/cabecera.html" %}
 {% block content %}
+<script>
+    function hideError(){
+        document.getElementById("dvError").style.display = "none";
+    }
+    function showError(msg){
+        var dvAnswer = document.getElementById("dvError");
+        dvAnswer.innerHTML = "Error: " + msg;
+        dvAnswer.style.display = "block";
+    }
+    function chk(){
+        var toret = true;
+        var form = document.getElementById("formNewClient");
+        hideError();
+        var name = form["edName"].value.trim().toLowerCase();
+        var surname = form["edSurname"].value.trim().toLowerCase();
+        var dni = form["edDni"].value.trim().toLowerCase();
+        var phone = form["edPhone"].value.trim();
+
+        var no_alfabeticos = /^[a-z ]{4,25}$/;
+        var dni_expr = /^[0-9]{8,8}[a-z]$/;
+        var tlf_expr = /^[0-9]{9,9}$/;
+
+        if(name.length < 4 || name.length > 25 || !no_alfabeticos.test(name.toLowerCase())){
+            toret = false;
+            showError("El nombre debe tener solo caracteres alfabeticos y tener una longitud mayor a 4");
+        }if(surname.length < 4 || surname.length > 50 || !no_alfabeticos.test(surname.toLowerCase())){
+            toret = false;
+            showError("El apellido debe tener solo caracteres alfabeticos y tener una longitud mayor a 4");
+        }if(!dni_expr.test(dni.toLowerCase())){
+            toret = false;
+            showError("EL FORMATO DEL DNI NO ES VÁLIDO. 11111111A")
+
+        }if(!tlf_expr.test(phone)){
+            toret = false;
+            showError("El formato del teléfono no es válido 666666666")
+        }
+        return toret;
+    }
+</script>
 <div class="container">
-    <form id="formNewClient" action="/admin/editClient" method="post">
+    <form id="formNewClient" action="/admin/editClient" method="post" onsubmit="return chk()">
         <h1>Editar cliente</h1>
         <div class="form-group">
             <label for="edDni">Dni:</label>
-            <input type="text" class="form-control" id="edDni" name="edDni" value="{{client.dni}}" required minlength="9">
+            <input type="text" class="form-control" id="edDni" name="edDni" value="{{client.dni}}" required>
         </div>
         <div class="form-group">
             <label for="edName">Nombre:</label>
@@ -31,5 +70,8 @@
             <button class="btn btn-danger">Cancelar</button>
         </a>
     </form>
+    <div id="dvError" class="mt-3 alert-danger">
+
+    </div>
 </div>
 {% endblock %}
