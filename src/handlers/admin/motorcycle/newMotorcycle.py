@@ -3,7 +3,6 @@ from webapp2_extras import jinja2
 from google.appengine.api import users
 from google.appengine.ext import ndb
 from model.motorcycle import Motorcycle
-from model.client import Client
 
 
 class AdminAddMotorcycleHandler(webapp2.RequestHandler):
@@ -84,11 +83,11 @@ class AdminAddMotorcycleHandler(webapp2.RequestHandler):
                 comments = self.request.get("edComments", "Error")
 
                 client = ndb.Key(urlsafe=id_client).get()
-                motorcycle = Motorcycle(id_client=client.key, registration=registration, brand=brand, model=model, comments=comments)
+                motorcycle = Motorcycle(id_client=client.key, registration=registration.upper(), brand=brand.capitalize(), model=model.capitalize(), comments=comments)
                 motorcycle.put()
 
                 volver = "/admin/showClients"
-                msg = "La motocycleta se ha creado correctamente"
+                msg = "La motocicleta se ha creado correctamente"
                 template_values = {
                     "volver": volver,
                     "msg": msg

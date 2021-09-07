@@ -20,7 +20,7 @@
 
         var alfabeticos = /^[a-z ]{4,25}$/;
 
-        if(nombre.length < 4 || nombre.length > 25 | alfabeticos.test(nombre.toLowerCase()){
+        if(nombre.length < 4 || nombre.length > 25 | alfabeticos.test(nombre.toLowerCase())){
             toret = false;
             showError("El nombre debe tener solo caracteres alfabeticos");
         }
@@ -32,25 +32,25 @@
         <h1>Añadir cliente</h1>
         <div class="form-group">
             <label for="edDni">Dni:</label>
-            <input type="text" class="form-control" id="edDni" name="edDni">
+            <input type="text" class="form-control" id="edDni" name="edDni" required>
         </div>
         <div class="form-group">
             <label for="edName">Nombre:</label>
-            <input type="text" class="form-control" id="edName" name="edName">
+            <input type="text" class="form-control" id="edName" name="edName" required>
         </div>
         <div class="form-group">
             <label for="edSurname">Apellidos:</label>
-            <input type="text" class="form-control" id="edSurname" name="edSurname">
+            <input type="text" class="form-control" id="edSurname" name="edSurname" required>
         </div>
         <div class="form-group">
             <label for="edPhone">Teléfono:</label>
-            <input type="text" class="form-control" id="edPhone" name="edPhone">
+            <input type="text" class="form-control" id="edPhone" name="edPhone" required>
         </div>
         <div class="form-group">
             <label for="edEmail">Email:</label>
-            <input type="email" class="form-control" id="edEmail" name="edEmail">
+            <input type="email" class="form-control" id="edEmail" name="edEmail" required>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary" onsubmit="chk()">Guardar</button>
         <a href="/admin/showClients">
             <button class="btn btn-danger">Cancelar</button>
         </a>

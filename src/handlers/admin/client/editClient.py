@@ -2,7 +2,6 @@ import webapp2
 from webapp2_extras import jinja2
 from google.appengine.api import users
 from google.appengine.ext import ndb
-from model.client import Client
 
 
 class AdminEditClientHandler(webapp2.RequestHandler):
@@ -72,11 +71,11 @@ class AdminEditClientHandler(webapp2.RequestHandler):
 
                 try:
                     client = ndb.Key(urlsafe=id_client).get()
-                    client.dni = dni
-                    client.name = name
-                    client.surname = surname
+                    client.dni = dni.lower()
+                    client.name = name.capitalize()
+                    client.surname = surname.capitalize()
                     client.phone = phone
-                    client.email = email
+                    client.email = email.lower()
                     client.put()
 
                     volver = "/admin/showClients"

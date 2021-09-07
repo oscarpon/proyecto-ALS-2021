@@ -2,7 +2,6 @@ import webapp2
 from webapp2_extras import jinja2
 from google.appengine.api import users
 from google.appengine.ext import ndb
-from model.client import Client
 from model.motorcycle import Motorcycle
 
 
@@ -31,7 +30,7 @@ class AdminDeleteClientHandler(webapp2.RequestHandler):
                         jinja = jinja2.get_jinja2(app=self.app)
                         self.response.write(jinja.render_template("/admin/client/deleteClient.html", **template_values))
                     except:
-                        msg = "Error inesperado 1"
+                        msg = "Error inesperado"
                         volver = "/admin/showClients"
 
                         template_values = {
@@ -75,7 +74,7 @@ class AdminDeleteClientHandler(webapp2.RequestHandler):
                         client_motorcycles = Motorcycle.query(Motorcycle.id_client == client.key)
 
                         volver = "/admin/showClients"
-                        msg = "El cliente y sus vehiculos han sido eliminado correctamente"
+                        msg = "El cliente y todos sus registros se han sido eliminado correctamente"
                         client.key.delete()
                         for motorcycle in client_motorcycles:
                             motorcycle.key.delete()

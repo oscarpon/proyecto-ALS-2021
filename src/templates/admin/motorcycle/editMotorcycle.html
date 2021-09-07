@@ -5,15 +5,15 @@
         <h1>Editar Moto</h1>
         <div class="form-group">
             <label for="edRegistration">Matricula:</label>
-            <input type="text" class="form-control" id="edRegistration" name="edRegistration" value="{{motorcycle.registration}}">
+            <input type="text" class="form-control" id="edRegistration" name="edRegistration" value="{{motorcycle.registration}}" required>
         </div>
         <div class="form-group">
             <label for="edBrand">Marca:</label>
-            <input type="text" class="form-control" id="edBrand" name="edBrand" value={{motorcycle.brand}}>
+            <input type="text" class="form-control" id="edBrand" name="edBrand" value={{motorcycle.brand}} required>
         </div>
         <div class="form-group">
             <label for="edModel">Modelo:</label>
-            <input type="text" class="form-control" id="edModel" name="edModel" value={{motorcycle.model}}>
+            <input type="text" class="form-control" id="edModel" name="edModel" value={{motorcycle.model}} required>
         </div>
         <div class="form-group">
             <label for="edComments">Comentario:</label>

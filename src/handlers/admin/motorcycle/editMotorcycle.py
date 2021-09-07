@@ -70,9 +70,9 @@ class AdminEditMotorcycleHandler(webapp2.RequestHandler):
 
                 try:
                     motorcycle = ndb.Key(urlsafe=id_motorcycle).get()
-                    motorcycle.registration = registration
-                    motorcycle.brand = brand
-                    motorcycle.model = model
+                    motorcycle.registration = registration.upper()
+                    motorcycle.brand = brand.capitalize()
+                    motorcycle.model = model.capitalize()
                     motorcycle.comments = comments
                     motorcycle.put()
 
