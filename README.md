@@ -10,4 +10,4 @@ Este tipo de usuario únicamente puede consultar datos, los datos de los cliente
 ### Los usuarios admin: 
 A mayores de los permisos que tiene el usuario normal, un usuario administrador podrá añadir nuevos clientes al sistema, crear motos a clientes y también crear reparaciones. Además de crearlas podrá eliminarlas y editarlas.
 
-Septiembre 2021 - Oscar Ponte Baquero
+Fin de carrera 2021 - Oscar Ponte Baquero
