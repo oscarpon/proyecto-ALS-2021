@@ -86,7 +86,7 @@ class AdminAddMotorcycleHandler(webapp2.RequestHandler):
                 motorcycle = Motorcycle(id_client=client.key, registration=registration.upper(), brand=brand.capitalize(), model=model.capitalize(), comments=comments)
                 motorcycle.put()
 
-                volver = "/admin/showClients"
+                volver = "/admin/detailClient?id_client=" + id_client
                 msg = "La motocicleta se ha creado correctamente"
                 template_values = {
                     "volver": volver,

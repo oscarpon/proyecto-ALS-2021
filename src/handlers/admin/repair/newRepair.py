@@ -86,7 +86,7 @@ class AdminAddRepairHandler(webapp2.RequestHandler):
                 repair = Repair(id_motorcycle=motorcycle.key, piece=piece, price=price, comments=comments)
                 repair.put()
 
-                volver = "/admin/showMotorcycles"
+                volver = "/admin/detailMotorcycle?id_motorcycle="
                 msg = "La reparacion se ha creado correctamente"
                 template_values = {
                     "volver": volver,

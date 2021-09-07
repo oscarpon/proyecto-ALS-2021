@@ -1,14 +1,42 @@
 {% extends "admin/cabecera.html" %}
 {% block content %}
+<script>
+    function hideError(){
+        document.getElementById("dvError").style.display = "none";
+    }
+    function showError(msg){
+        var dvAnswer = document.getElementById("dvError");
+        dvAnswer.innerHTML = "Error: " + msg;
+        dvAnswer.style.display = "block";
+    }
+    function chk(){
+        var toret = true;
+        var form = document.getElementById("formNewRepair");
+        hideError();
+        var piece = form["edPiece"].value.trim();
+        var price = form["edPrice"].value.trim();
+
+        var num_positiv = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
+
+        if(!num_positiv.test(price)){
+            toret = false;
+            showError("El precio no puede ser negativo");
+        }if(piece.length < 3){
+            toret = false;
+            showError("La pieza tiene que tener una longitud mayor a 3");
+        }
+        return toret;
+    }
+</script>
 <div class="container">
-    <form id="formNewRepair" action="/admin/newRepair" method="post">
+    <form id="formNewRepair" action="/admin/newRepair" method="post" onsubmit="return chk()">
         <h1>Crear Reparación</h1>
         <div class="form-group">
             <label for="edPiece">Pieza:</label>
             <input type="text" class="form-control" id="edPiece" name="edPiece" required>
         </div><div class="form-group">
             <label for="edPrice">Precio:</label>
-            <input type="number" class="form-control" id="edPrice" name="edPrice" required>
+            <input type="text" class="form-control" id="edPrice" name="edPrice" required>
         </div>
         <div class="form-group">
             <label for="edComments">Comment:</label>
@@ -16,9 +44,12 @@
         </div>
         <input type="text" id="edIdClient" name="edIdMotorcycle" value="{{motorcycle.key.urlsafe()}}" hidden/>
         <button type="submit" class="btn btn-primary">Guardar</button>
-        <a href="/admin/showMotorcycles">
+        <a href="/admin/detailMotorcycle?id_motorcycle={{motorcycle.key.urlsafe()}}">
             <button class="btn btn-danger">Cancelar</button>
         </a>
     </form>
+    <div id="dvError" class="mt-3 alert-danger">
+
+    </div>
 </div>
 {% endblock %}
