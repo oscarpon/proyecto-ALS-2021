@@ -62,6 +62,7 @@ class AdminDeleteRepairHandler(webapp2.RequestHandler):
         if user:
             if users.is_current_user_admin():
                 id_repair = self.request.get("edIdRepair", "Error")
+
                 if id_repair == "Error":
                     self.redirect("/")
                     return
@@ -69,7 +70,7 @@ class AdminDeleteRepairHandler(webapp2.RequestHandler):
                     try:
                         repair = ndb.Key(urlsafe=id_repair).get()
 
-                        volver = "/admin/showMotorcycles"
+                        volver = "/admin/showRepairs"
                         msg = "La reparacion se ha sido eliminada correctamente"
                         repair.key.delete()
 

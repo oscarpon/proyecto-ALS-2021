@@ -16,11 +16,11 @@
         var piece = form["edPiece"].value.trim();
         var price = form["edPrice"].value.trim();
 
-        var num_positiv = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
+        var num_positiv = /^[+]?([0-9]+(?:[\,][0-9]*)?|\.[0-9]+)$/;
 
         if(!num_positiv.test(price)){
             toret = false;
-            showError("El precio no puede ser negativo");
+            showError("El precio no puede ser negativo y no puede contener el símbolo €. Debe de teenr el formato 12,30 o 12 si ");
         }if(piece.length < 3){
             toret = false;
             showError("La pieza tiene que tener una longitud mayor a 3");
@@ -32,7 +32,7 @@
     <form id="formNewRepair" action="/admin/newRepair" method="post" onsubmit="return chk()">
         <h1>Crear Reparación</h1>
         <div class="form-group">
-            <label for="edPiece">Pieza:</label>
+            <label for="edPiece">Nombre Pieza:</label>
             <input type="text" class="form-control" id="edPiece" name="edPiece" required>
         </div><div class="form-group">
             <label for="edPrice">Precio:</label>

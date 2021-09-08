@@ -77,7 +77,6 @@ class AdminAddRepairHandler(webapp2.RequestHandler):
         if user:
             if users.is_current_user_admin():
                 id_motorcycle = self.request.get("edIdMotorcycle", "Error")
-                #added = self.request.get("edAdded", "Error")
                 piece = self.request.get("edPiece", "Error")
                 price = self.request.get("edPrice", "Error")
                 comments = self.request.get("edComments", "Error")
@@ -86,7 +85,7 @@ class AdminAddRepairHandler(webapp2.RequestHandler):
                 repair = Repair(id_motorcycle=motorcycle.key, piece=piece, price=price, comments=comments)
                 repair.put()
 
-                volver = "/admin/detailMotorcycle?id_motorcycle="
+                volver = "/admin/detailMotorcycle?id_motorcycle=" + id_motorcycle
                 msg = "La reparacion se ha creado correctamente"
                 template_values = {
                     "volver": volver,
